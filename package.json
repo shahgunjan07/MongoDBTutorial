@@ -1,0 +1,16 @@
+{
+  "name": "gunjan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^3.2.0",
+    "mongoose": "^4.9.2",
+    "nodemon": "^1.11.0"
+  }
+}
