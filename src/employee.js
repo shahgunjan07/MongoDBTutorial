@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const employeeSchema = new Schema({
 	name:{
 			type:String,
 			required:[true,'Name is required.']
@@ -9,5 +9,5 @@ const UserSchema = new Schema({
 	postCount:Number
 });
 
-const User = mongoose.model('user',UserSchema);
-module.exports = User;
+const employee = mongoose.model('employee',employeeSchema);
+module.exports = employee;
