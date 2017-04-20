@@ -8,8 +8,14 @@ describe('Validating Employee Records', () => {
 		const emp = new Employee({name:undefined});
 		const validationResult = emp.validateSync();
 		const {message} = validationResult.errors.name;
-		assert(message === 'Name is required.');
+		assert(message === 'Employee Name is required.');
 	});
 	
+	it('Validates a user\' name. Name required longer than 2 characters', () => {
+		const emp = new Employee({name:'A'});
+		const validationResult = emp.validateSync();
+		const {message} = validationResult.errors.name;
+		assert(message === 'Employee Name must be longer than 2 characters');
+	});
 	
 });

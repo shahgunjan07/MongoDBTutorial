@@ -16,14 +16,14 @@ describe('Updating a User', () => {
 			.then( () => done());
 	});
 	
-	function assertName(operation,done,name){
+	function assertName(operation,done,nameStr){
 		operation
-			.then(() => User.find({}))
+			.then(() => User.find({name:nameStr}))
 			.then((users) => {
 				console.log('-----------------------------------------------------------------')
 				console.log(users[0])
-				//assert(users.length === 1);
-				//assert(users[0].name === name);
+				assert(users.length === 1);
+				assert(users[0].name === nameStr);
 				done();
 				console.log('------------------------------------------------------------------')
 			});
@@ -43,11 +43,11 @@ describe('Updating a User', () => {
 	});
 	
 
-	/*
+	
 	it('A Model class can update one record', (done) => {
-		assertName(User.findOneAndUpdate({name: 	'ClassUpdate3'}, {name: 'test'}),done,'test');
+		assertName(User.findOneAndUpdate({name: 	'ClassUpdate3'}, {name: 'ClassUpdate4'}),done,'ClassUpdate4');
 	});
-	*/
+	
 
 	
 	

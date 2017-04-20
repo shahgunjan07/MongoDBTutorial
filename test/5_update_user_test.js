@@ -4,23 +4,24 @@ const User = require('../src/users');
 
 describe('Updating a User', () => {
 	
-	let gunjan;
+	let udipi;
 	
 	beforeEach((done) => {
-		gunjan = new User({name:'Gunjan'});
+		udipi = new User({name:'udipi'});
 		
-		gunjan.save()
+		udipi.save()
 			.then( () => done());
 	});
 	
-	function assertName(operation,done,name){
+	function assertName(operation,done,nameStr){
 		operation
-			.then(() => User.find({}))
+			.then(() => User.find({name:nameStr}))
 			.then((users) => {
 				console.log('-----------------------------------------------------------------')
 				console.log(users[0])
+				console.log("Number of Users :"+users.length)
 				assert(users.length === 1);
-				assert(users[0].name === name);
+				assert(users[0].name === nameStr);
 				done();
 				console.log('------------------------------------------------------------------')
 			});
@@ -28,20 +29,20 @@ describe('Updating a User', () => {
 	
 	it('Instance Type Using Set N Save', (done) => {
 		console.log("Before Updating :");
-		console.log(gunjan)
+		console.log(udipi)
 		
-		gunjan.set({'name':'GSSHAH'});
+		udipi.set({'name':'GSSHAH'});
 		
 		console.log("After Updating : ");
-		console.log(gunjan);
+		console.log(udipi);
 		
-		assertName(gunjan.save(),done,'GSSHAH');
+		assertName(udipi.save(),done,'GSSHAH');
 
 	});
 	
 	
 	it('A Model instance can update', (done) => {
-		assertName(gunjan.update({name:'GSSHAH2'}),done,'GSSHAH2');
+		assertName(udipi.update({name:'GSSHAH2'}),done,'GSSHAH2');
 	});
 	
 

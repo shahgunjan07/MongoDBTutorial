@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+let isSchemaDropped = false;
 
 mongoose.Promise = global.Promise;
 
@@ -19,28 +19,36 @@ before((done) => {
 		
 beforeEach((done) => {
 		
-		
-	
-		try{
+		if(!isSchemaDropped){
 			
-			if(mongoose.connection.collections.users != undefined){
-				mongoose.connection.collections.users.drop(() => {
-					//Ready to run new test !!
-					console.log("---- Dropped User Schema ----");
-				});
+			isSchemaDropped = true;
+			console.log("Dropping database schema !!!");
+			
+			try{
+				
+				if(mongoose.connection.collections.users != undefined){
+					mongoose.connection.collections.users.drop(() => {
+						//Ready to run new test !!
+						console.log("---- Dropped User Schema ----");
+					});
+				}
+				
+				if(mongoose.connection.collections.employees != undefined){
+					mongoose.connection.collections.employees.drop(() => {
+						//Ready to run new test !!
+						console.log("---- Dropped Employee Schema ----");
+					});
+				}
+			
+			
+			}catch(e){
+				console.log(e);
 			}
 			
-			if(mongoose.connection.collections.employees != undefined){
-				mongoose.connection.collections.employees.drop(() => {
-					//Ready to run new test !!
-					console.log("---- Dropped Employee Schema ----");
-				});
-			}
-		
-		
-		}catch(e){
-			console.log(e);
+		}else{
+			console.log("Database schema is already dropped before !!!");
 		}
+	
 		done();
 		
 	
