@@ -18,4 +18,14 @@ describe('Validating Employee Records', () => {
 		assert(message === 'Employee Name must be longer than 2 characters');
 	});
 	
+	it('Disallow invalid records from getting saved', (done) => {
+		const emp = new Employee({name:'A'});
+		emp.save()
+			.catch( (validationResult) => {
+				const {message} = validationResult.errors.name;
+				assert(message === 'Employee Name must be longer than 2 characters');
+				done();
+			});
+	});
+	
 });

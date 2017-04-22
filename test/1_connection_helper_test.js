@@ -46,7 +46,7 @@ beforeEach((done) => {
 			}
 			
 		}else{
-			console.log("Database schema is already dropped before !!!");
+			//console.log("Database schema is already dropped before !!!");
 		}
 	
 		done();
