@@ -8,7 +8,7 @@ describe('Testing Subdocuments', () => {
 		const postMan = new User({
 			name:'PostMan',
 			posts: [{title:'PostTitle'}],
-			postCount:1	
+			likes:1	
 		});
 		
 		postMan.save()
@@ -25,7 +25,7 @@ describe('Testing Subdocuments', () => {
 		const postMan = new User({
 			name:'PostWalaKaka',
 			posts: [],
-			postCount:0	
+			likes:0	
 		});
 		
 		
@@ -33,7 +33,7 @@ describe('Testing Subdocuments', () => {
 			.then(() => User.findOne({name:'PostWalaKaka'}))
 			.then( (user) => {
 				user.posts.push({title:'PostWalaKakaTitle'});
-				user.set({postCount:1});
+				user.set({likes:1});
 				return user.save();
 			})
 			.then( () => User.findOne({name:'PostWalaKaka'}))
@@ -49,7 +49,7 @@ describe('Testing Subdocuments', () => {
 		const postMan = new User({
 			name:'PostWalaKaka2',
 			posts: [{title:'PostWalaKaka2'}],
-			postCount:1	
+			likes:1	
 		});
 		
 		
